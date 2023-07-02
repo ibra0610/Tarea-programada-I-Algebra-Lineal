@@ -1,5 +1,5 @@
 #Tarea Programada Algebra Lineal 
-#Javier Cruz C02517 Alexander Wang Wu C28559 Sebastián Arce Flores C10577
+#Javier Cruz C02517 Alexander Wang Wu C28559 Sebastián Arce Flores C10577 David Meléndez Aguilar C04726
 
 import numpy as np 
 import matplotlib.pyplot as plt 
@@ -88,19 +88,22 @@ class ACP:
         plt.title(titulo) 
         plt.grid(True) 
         plt.show() 
-
-    def plot_circulo(self, ejes=[0, 1], var_labels = True, titulo = 'Circulo de Correlacion'): 
-        cosenos_variables = self.cosenos_variables() 
-        plt.figure(figsize=(8, 8))
-        plt.scatter(cosenos_variables[:, ejes[0]], cosenos_variables[:, ejes[1]])
-        if var_labels: 
-            for i, (x, y) in enumerate(zip(cosenos_variables[:, ejes[0]], cosenos_variables[:, ejes[1]])): 
-                plt.text(x, y, str(i + 1)) 
         
-        plt.xlabel('Coseno Cuadrado Variable {}'.format(ejes[0] + 1))
-        plt.ylabel('Coseno Cuadrado Variable {}'.format(ejes[1] + 1)) 
-        plt.title(titulo) 
-        plt.grid(True)
+    def plot_circulo(self, ejes=[0, 1], var_labels= True, titulo = 'Circulo de Correlaciones'): 
+        nombres_materias = self.__datos.columns.tolist()
+        correlacion_var = self.correlacion_variables()
+        fig, ax = plt.subplots()
+        circulo = plt.Circle((0, 0), radius=1, edgecolor='k', facecolor='none')
+        plt.gca().add_patch(circulo)
+        for i, (x, y) in enumerate(zip(correlacion_var[:, ejes[0]], correlacion_var[:, ejes[1]])): 
+            ax.arrow(0, 0, x, y, head_width=0.05, head_length=0.1, fc='b', ec='b') #Diseno de las flechas del grafico, 'b' significa que son azules
+            if var_labels: 
+                ax.text(x, y, nombres_materias[i], fontsize=8) 
+        plt.xlabel(f'Componente {ejes[0]+1}')
+        plt.ylabel(f'Componente {ejes[1]+1}')
+        plt.title(titulo)
+        ax.axhline(0, color='black', linewidth=0.5)
+        ax.axvline(0, color='black', linewidth=0.5)
+        ax.set_aspect('equal', adjustable='box')
+        plt.grid()
         plt.show()
-        
-
