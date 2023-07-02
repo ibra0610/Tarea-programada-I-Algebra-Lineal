@@ -5,11 +5,11 @@ import scipy.linalg as la
 import pandas as pd 
 import seaborn as sns  
 
-datos = pd.read_csv('EjemploEstudiantes.csv', delimiter = ';', decimal= ",", index_col=0) 
-
-
+datos = pd.read_csv('EjemploEstudiantes.csv', delimiter = ';', decimal= ",", index_col=0)  
+print(datos) 
+colores = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'] #arreglo de colores para que en los graficos aparezcan de diferente color
 acp = ACP(datos, n_componentes = 5) 
-acp.plot_plano_principal() 
+acp.plot_plano_principal(colores=colores) 
 acp.plot_circulo()
 
 

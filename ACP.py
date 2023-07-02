@@ -74,13 +74,14 @@ class ACP:
         varianza_explicada = np.cumsum(valores_propios_ordenados) / np.sum(valores_propios_ordenados) 
         return varianza_explicada 
     
-    def plot_plano_principal(self, ejes = [0, 1], ind_labels = True, titulo = 'Plano Principal'): 
+    def plot_plano_principal(self, ejes = [0, 1], ind_labels = True, titulo = 'Plano Principal', colores = None): 
+        nombres_estudiantes = self.__datos.index.tolist()
         componentes = self.componentes_principales() 
         plt.figure(figsize=(8, 8)) 
-        plt.scatter(componentes[:, ejes[0]], componentes[:, ejes[1]]) 
+        plt.scatter(componentes[:, ejes[0]], componentes[:, ejes[1]], c=colores) 
         if ind_labels: 
             for i, (x,y) in enumerate(zip(componentes[:, ejes[0]], componentes[:, ejes[1]])): 
-                plt.text(x, y, str(i+1)) 
+                plt.text(x, y, nombres_estudiantes[i]) 
         
         plt.xlabel('Componente Principal {}'.format(ejes[0] + 1)) 
         plt.ylabel('Componente Principal {}'.format(ejes[1] + 1))
