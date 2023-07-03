@@ -15,14 +15,3 @@ acp = ACP(datos, n_componentes = 5)
 acp.plot_plano_principal(colores=colores) 
 acp.plot_circulo()
 
-
-
-    
-    
-    
-    
-   
-    
-   
-    
-    #Programar metodos que grafiquen el plano principal, el circulo de correlaciones. 

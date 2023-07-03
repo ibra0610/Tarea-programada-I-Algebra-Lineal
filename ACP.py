@@ -95,7 +95,7 @@ class ACP:
         nombres_materias = self.__datos.columns.tolist() #se encarga de extraer solamente los nombres de las materias de los datos para poder graficarlos
         correlacion_var = self.correlacion_variables()
         fig, ax = plt.subplots()
-        circulo = plt.Circle((0, 0), radius=1, edgecolor='k', facecolor='none') #crea el circulo de la grafica
+        circulo = plt.Circle((0, 0), radius=1.75, edgecolor='k', facecolor='none') #crea el circulo de la grafica
         plt.gca().add_patch(circulo)
         for i, (x, y) in enumerate(zip(correlacion_var[:, ejes[0]], correlacion_var[:, ejes[1]])): 
             ax.arrow(0, 0, x, y, head_width=0.05, head_length=0.1, fc='b', ec='b') #Diseno de las flechas del grafico, 'b' significa que son azules
